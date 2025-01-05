@@ -20,9 +20,9 @@ public class _2_2M_2_Test {
 
     private static StreamsWriter writer1 = new StreamsWriter() {
         @Override
-        public void writeTo(OutputStream[] outputStream) throws WriteException {
+        public void writeTo(OutputStream[] outputStreams) throws WriteException {
             try {
-                outputStream[0].write("AFCH".getBytes());
+                outputStreams[0].write("AFCH".getBytes());
             } catch (IOException e) {
                 throw new WriteException(e);
             }
@@ -36,9 +36,9 @@ public class _2_2M_2_Test {
 
     private static StreamsWriter writer2 = new StreamsWriter() {
         @Override
-        public void writeTo(OutputStream[] outputStream) throws WriteException {
+        public void writeTo(OutputStream[] outputStreams) throws WriteException {
             try {
-                outputStream[0].write("EBGD".getBytes());
+                outputStreams[0].write("EBGD".getBytes());
             } catch (IOException e) {
                 throw new WriteException(e);
             }
@@ -126,7 +126,7 @@ public class _2_2M_2_Test {
     public void test() throws Exception {
         DataPipes.init()
                  .writer(writer1).joiner(joiner).reader(reader1)
-                 .writer(writer2).joinerMergeUp().reader(reader2)
+                 .writer(writer2).joinerCombine().reader(reader2)
                  .done()
                  .displayNet()
                  .doStream();

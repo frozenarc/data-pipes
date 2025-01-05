@@ -69,9 +69,9 @@ public class _4W_2M_1M_4R_Test {
     public void test() throws Exception {
         DataPipes.init()
                  .writer("ABCD", getWriter("ABCD")).joiner("ABCDEFGH", joinerFI1).joiner("ALL", joinerFI2).reader("ABCD", readerFI)
-                 .writer("EFGH", getWriter("EFGH")).joinerMergeUp("------------- ").joinerMergeUp("--------- ").reader("EFGH", readerFI)
-                 .writer("IJKL", getWriter("IJKL")).joiner("IJKLMNOP", joinerFI1).joinerMergeUp("--------- ").reader("IJKL", readerFI)
-                 .writer("MNOP", getWriter("MNOP")).joinerMergeUp("------------- ").joinerMergeUp("--------- ").reader("MNOP", readerFI)
+                 .writer("EFGH", getWriter("EFGH")).joinerCombine("------------- ").joinerCombine("--------- ").reader("EFGH", readerFI)
+                 .writer("IJKL", getWriter("IJKL")).joiner("IJKLMNOP", joinerFI1).joinerCombine("--------- ").reader("IJKL", readerFI)
+                 .writer("MNOP", getWriter("MNOP")).joinerCombine("------------- ").joinerCombine("--------- ").reader("MNOP", readerFI)
                  .done()
                  .displayNet()
                  .doStream();

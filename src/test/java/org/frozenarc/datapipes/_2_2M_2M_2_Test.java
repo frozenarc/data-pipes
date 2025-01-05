@@ -47,7 +47,7 @@ public class _2_2M_2M_2_Test {
     public void test() throws Exception {
         DataPipes.init()
                  .writer("single1", getWriter("ABCD")).joiner("multi1", joinerFI).joiner("multi2", joinerFI).reader("single", readerFI)
-                 .writer("single2", getWriter("WXYZ")).joinerMergeUp("------------").joinerMergeUp("-----------").reader("single2", readerFI)
+                 .writer("single2", getWriter("WXYZ")).joinerCombine("------------").joinerCombine("-----------").reader("single2", readerFI)
                  .done()
                  .displayNet()
                  .doStream();

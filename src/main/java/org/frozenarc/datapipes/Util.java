@@ -19,23 +19,38 @@ import java.io.OutputStream;
  */
 public class Util {
 
+    /**
+     * Represents StreamsWriterFI (functional interface)
+     */
     public static StreamsWriterFI idleWriterFI = outputStream -> {
 
     };
 
+    /**
+     * Represents StreamsJoinerFI (functional interface)
+     */
     public static StreamsJoinerFI idleJoinerFI = (inputStreams, outputStreams) -> {
 
     };
 
+    /**
+     * Represents StreamsReaderFI (functional interface)
+     */
     public static StreamsReaderFI idleReaderFI = inputStreams -> {
 
     };
 
+    /**
+     * The method accepts name and fi and returns worker
+     * @param name of StreamsWriter
+     * @param fi instance of StreamsWriterFI
+     * @return instance of StreamsWriter
+     */
     public static StreamsWriter writer(String name, StreamsWriterFI fi) {
         return new StreamsWriter() {
             @Override
-            public void writeTo(OutputStream[] outputStream) throws WriteException {
-                fi.writeTo(outputStream);
+            public void writeTo(OutputStream[] outputStreams) throws WriteException {
+                fi.writeTo(outputStreams);
             }
 
             @Override
@@ -45,6 +60,12 @@ public class Util {
         };
     }
 
+    /**
+     * The method accepts name and fi and returns worker
+     * @param name of StreamsJoiner
+     * @param fi instance of StreamsJoinerFI
+     * @return instance of StreamsJoiner
+     */
     public static StreamsJoiner joiner(String name, StreamsJoinerFI fi) {
         return new StreamsJoiner() {
             @Override
@@ -59,6 +80,12 @@ public class Util {
         };
     }
 
+    /**
+     * The method accepts name and fi and returns worker
+     * @param name of StreamsReader
+     * @param fi instance of StreamsReaderFI
+     * @return instance of StreamsReader
+     */
     public static StreamsReader reader(String name, StreamsReaderFI fi) {
         return new StreamsReader() {
             @Override

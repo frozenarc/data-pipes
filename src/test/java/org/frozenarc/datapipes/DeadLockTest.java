@@ -19,14 +19,14 @@ public class DeadLockTest {
 
     private static StreamsWriter writer = new StreamsWriter() {
         @Override
-        public void writeTo(OutputStream[] outputStream) throws WriteException {
+        public void writeTo(OutputStream[] outputStreams) throws WriteException {
             try {
                 StringBuilder builder = new StringBuilder();
                 builder.append("A".repeat(1025));
                 System.out.println("Writing started");
-                outputStream[0].write(builder.toString().getBytes());
+                outputStreams[0].write(builder.toString().getBytes());
                 System.out.println("Writing 1st done");
-                outputStream[1].write(builder.toString().toLowerCase().getBytes());
+                outputStreams[1].write(builder.toString().toLowerCase().getBytes());
                 System.out.println("Writing done");
             } catch (IOException e) {
                 throw new WriteException(e);
@@ -66,7 +66,7 @@ public class DeadLockTest {
         CompletableFuture<Void> futures = CompletableFuture.allOf(CompletableFuture.runAsync(() -> {
             try {
                 net.writer(writer).reader(reader)
-                   .writerMergeUp().readerMergeUp()
+                   .writerCombine().readerCombine()
                    .done()
                    .displayNet()
                    .doStream();
