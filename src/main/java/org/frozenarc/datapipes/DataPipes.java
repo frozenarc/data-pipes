@@ -54,7 +54,7 @@ public class DataPipes implements WriterFinisherBuilder, JoinerReaderBuilder {
     }
 
     public JoinerReaderBuilder writer(String name, StreamsWriterFI writerFI) throws DataPipeException {
-        return writer(Util.writerFI(name, writerFI));
+        return writer(Util.writer(name, writerFI));
     }
 
     public JoinerReaderBuilder writerIdle(String _a) throws DataPipeException {
@@ -101,7 +101,7 @@ public class DataPipes implements WriterFinisherBuilder, JoinerReaderBuilder {
     }
 
     public JoinerReaderBuilder joiner(String name, StreamsJoinerFI joinerFI) throws DataPipeException {
-        return joiner(Util.joinerFI(name, joinerFI));
+        return joiner(Util.joiner(name, joinerFI));
     }
 
     public JoinerReaderBuilder joinerIdle(String _a) throws DataPipeException {
@@ -143,7 +143,7 @@ public class DataPipes implements WriterFinisherBuilder, JoinerReaderBuilder {
     }
 
     public WriterFinisherBuilder reader(String name, StreamsReaderFI readerFI) {
-        return reader(Util.readerFI(name, readerFI));
+        return reader(Util.reader(name, readerFI));
     }
 
     public WriterFinisherBuilder readerIdle(String _a) {

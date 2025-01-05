@@ -31,7 +31,7 @@ public class Util {
 
     };
 
-    public static StreamsWriter writerFI(String name, StreamsWriterFI fi) {
+    public static StreamsWriter writer(String name, StreamsWriterFI fi) {
         return new StreamsWriter() {
             @Override
             public void writeTo(OutputStream[] outputStream) throws WriteException {
@@ -45,7 +45,7 @@ public class Util {
         };
     }
 
-    public static StreamsJoiner joinerFI(String name, StreamsJoinerFI fi) {
+    public static StreamsJoiner joiner(String name, StreamsJoinerFI fi) {
         return new StreamsJoiner() {
             @Override
             public void join(InputStream[] inputStreams, OutputStream[] outputStreams) throws JoinException {
@@ -59,7 +59,7 @@ public class Util {
         };
     }
 
-    public static StreamsReader readerFI(String name, StreamsReaderFI fi) {
+    public static StreamsReader reader(String name, StreamsReaderFI fi) {
         return new StreamsReader() {
             @Override
             public void readFrom(InputStream[] inputStreams) throws ReadException {
